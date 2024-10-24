@@ -1,5 +1,10 @@
+require("dotenv").config();
 const express = require('express')
 const app = express()
+
+const {initializeDatabase} = require("./db/db.connect")
+const Recipe = require("./models/recipe.models")
+initializeDatabase()
 
 const cors = require("cors");
 const corsOptions = {
@@ -8,10 +13,6 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-
-const {initializeDatabase} = require("./db/db.connect")
-const Recipe = require("./models/recipe.models")
-initializeDatabase()
 
 app.use(express.json())
 
